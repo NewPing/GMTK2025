@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdg54qeul1i0c"]
+
+[ext_resource type="Texture2D" uid="uid://b6rhqjspwr8nj" path="res://resources/Characters_free/Bob_idle_anim_16x16.png" id="1_ldvv7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnhhq"]
+size = Vector2(16, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qw1d"]
+atlas = ExtResource("1_ldvv7")
+region = Rect2(288, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nawq"]
+atlas = ExtResource("1_ldvv7")
+region = Rect2(304, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yncf"]
+atlas = ExtResource("1_ldvv7")
+region = Rect2(320, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d42v"]
+atlas = ExtResource("1_ldvv7")
+region = Rect2(336, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neoev"]
+atlas = ExtResource("1_ldvv7")
+region = Rect2(352, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnmh3"]
+atlas = ExtResource("1_ldvv7")
+region = Rect2(368, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6ih3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qw1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nawq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yncf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d42v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_neoev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnmh3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PrinceCharacter" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_mnhhq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j6ih3")
+frame_progress = 0.515351
