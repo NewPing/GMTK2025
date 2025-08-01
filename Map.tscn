@@ -1129,7 +1129,9 @@ texture = ExtResource("2_3h1ab")
 3:0/0 = 0
 4:0/0 = 0
 5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(1.25901, -8, 1.07915, 8, 8, 8, 8, -8)
 6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.43887, -8, -1.43887, 8, -8, 8, -8, -8)
 7:0/0 = 0
 8:0/0 = 0
 12:0/0 = 0
@@ -1371,6 +1373,7 @@ texture = ExtResource("2_3h1ab")
 9:20/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_y32ns"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0hol4")
 sources/1 = SubResource("TileSetAtlasSource_q6r6c")
 
@@ -1382,3 +1385,6 @@ tile_set = SubResource("TileSet_y32ns")
 
 [node name="PrinceCharacter" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(81, 7)
+
+[node name="Camera2D" type="Camera2D" parent="PrinceCharacter"]
+position = Vector2(0, 5)
