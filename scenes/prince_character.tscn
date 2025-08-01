@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdg54qeul1i0c"]
+[gd_scene load_steps=11 format=3 uid="uid://cdg54qeul1i0c"]
 
+[ext_resource type="Script" uid="uid://biaacka4llyud" path="res://scripts/prince.gd" id="1_2kdts"]
 [ext_resource type="Texture2D" uid="uid://b6rhqjspwr8nj" path="res://resources/Characters_free/Bob_idle_anim_16x16.png" id="1_ldvv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnhhq"]
@@ -56,6 +57,7 @@ animations = [{
 }]
 
 [node name="PrinceCharacter" type="CharacterBody2D"]
+script = ExtResource("1_2kdts")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)
