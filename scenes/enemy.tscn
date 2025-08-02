@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0ewd423vy7hu"]
+[gd_scene load_steps=11 format=3 uid="uid://b0ewd423vy7hu"]
 
 [ext_resource type="Texture2D" uid="uid://c1l2oedwa8vfp" path="res://resources/Characters_free/Alex_idle_anim_16x16.png" id="1_7p1mj"]
 
@@ -55,6 +55,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_7p1mj"]
+points = PackedVector2Array(0, 0, 20, 20, 40, 0)
+
 [node name="Enemy" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,4 +66,11 @@ shape = SubResource("RectangleShape2D_mnhhq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j6ih3")
-frame_progress = 0.776426
+frame_progress = 0.166404
+
+[node name="DetectionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+position = Vector2(-85, -70)
+scale = Vector2(4.24, 3.68)
+shape = SubResource("ConvexPolygonShape2D_7p1mj")
