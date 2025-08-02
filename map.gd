@@ -4,7 +4,6 @@ var players: Array[Node2D] = []
 var current_index: int = 0
 
 @onready var camera: Camera2D = $Camera2D
-@export var camera_smooth: float = 8.0
 
 func _ready() -> void:
 	# Collect players
@@ -38,11 +37,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var curr: Node2D = _current_player()
 	if curr and camera:
-		if camera_smooth > 0.0:
-			var t: float = clamp(camera_smooth * delta, 0.0, 1.0)
-			camera.global_position = camera.global_position.lerp(curr.global_position, t)
-		else:
-			camera.global_position = curr.global_position
+		camera.global_position = curr.global_position
 
 func _current_player() -> Node2D:
 	if current_index >= 0 and current_index < players.size():

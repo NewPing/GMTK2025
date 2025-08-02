@@ -47,10 +47,7 @@ func _on_player_touched(the_player: Node2D) -> void:
 	emit_signal("player_touched", the_player)
 
 	# Example tiny freeze to show it's working (remove later)
-	set_physics_process(false)
 	busy_with_player = true
-	if is_instance_valid(the_player):
-		the_player.set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
 	if busy_with_player:
