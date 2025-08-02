@@ -56,6 +56,7 @@ func _on_player_touched(the_player: Node2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	if busy_with_player:
+		_animated_sprite.play("idle")
 		return
 		
 	player_visible = false
