@@ -6,14 +6,12 @@ var current_index: int = 0
 @onready var camera: Camera2D = $Camera2D
 
 func _ready() -> void:
-	# Collect players
 	var raw_players: Array = get_tree().get_nodes_in_group("player")
 	players.clear()
 	for n in raw_players:
 		if n is Node2D:
 			players.append(n)
 
-	# Stable order by name (optional)
 	players.sort_custom(func(a: Node2D, b: Node2D) -> bool:
 		return String(a.name) < String(b.name)
 	)
@@ -28,7 +26,6 @@ func _ready() -> void:
 
 	_attach_camera_to(players[current_index])
 
-	# Connect all enemies
 	var enemies: Array = get_tree().get_nodes_in_group("enemy")
 	for e in enemies:
 		if e and e.has_signal("player_touched"):
@@ -78,9 +75,7 @@ func _find_nearest_uncaught_index(exclude_player: Node2D) -> int:
 		if p == exclude_player:
 			continue
 
-		# Read the shared Player.gd boolean directly and TYPE it
 		var uncaught: bool = false
-		# If all players share the same script, this property exists:
 		uncaught = not (p as Node).get("is_caught")
 
 		if not uncaught:
