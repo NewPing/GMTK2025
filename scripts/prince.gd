@@ -8,7 +8,6 @@ var velocity_input: Vector2 = Vector2.ZERO
 
 func _ready():
 	_animated_sprite = $AnimatedSprite2D
-
 	
 func _physics_process(_delta: float) -> void:
 	if is_current and not is_caught:
