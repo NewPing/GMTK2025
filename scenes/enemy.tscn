@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0ewd423vy7hu"]
+[gd_scene load_steps=13 format=3 uid="uid://b0ewd423vy7hu"]
 
 [ext_resource type="Texture2D" uid="uid://c1l2oedwa8vfp" path="res://resources/Characters_free/Alex_idle_anim_16x16.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://d008wc7ahrc3e" path="res://scenes/enemy.gd" id="1_md0e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnhhq"]
 size = Vector2(16, 23)
@@ -56,9 +57,13 @@ animations = [{
 }]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_7p1mj"]
-points = PackedVector2Array(0, 0, 20, 20, 40, 0)
+points = PackedVector2Array(5, 15, 18, -0.5, 22, -0.5, 35, 15, 30, 20, 10, 20)
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
+height = 28.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_md0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4.5)
@@ -68,9 +73,18 @@ shape = SubResource("RectangleShape2D_mnhhq")
 sprite_frames = SubResource("SpriteFrames_j6ih3")
 frame_progress = 0.166404
 
-[node name="DetectionRadius" type="Area2D" parent="."]
+[node name="Area2D_Vision" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
-position = Vector2(-85, -70)
+[node name="Vision_CollisionShape2D" type="CollisionShape2D" parent="Area2D_Vision"]
+position = Vector2(-85, 19)
 scale = Vector2(4.24, 3.68)
 shape = SubResource("ConvexPolygonShape2D_7p1mj")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 95)
+
+[node name="Area2D_Touch" type="Area2D" parent="."]
+
+[node name="Touch_CollisionShape2D" type="CollisionShape2D" parent="Area2D_Touch"]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_md0e3")

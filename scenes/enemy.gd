@@ -1,0 +1,76 @@
+extends CharacterBody2D
+
+@onready var detection_area: Area2D = $Area2D_Vision
+@onready var touch_area: Area2D = $Area2D_Touch
+@onready var ray: RayCast2D = $RayCast2D
+
+var player: Node2D = null
+var player_in_cone := false
+var player_visible := false
+var busy_with_player := false
+
+@export var speed: float = 120.0
+
+func _ready() -> void:
+	# Vision cone signals
+	detection_area.body_entered.connect(_on_detection_body_entered)
+	detection_area.body_exited.connect(_on_detection_body_exited)
+
+	# Touch signals
+	if touch_area:
+		touch_area.body_entered.connect(_on_touch_body_entered)
+
+	# Prevent ray from hitting self
+	ray.enabled = true
+	ray.exclude_parent = true
+
+func _on_detection_body_entered(body: Node) -> void:
+	if body is Node2D and body.is_in_group("player"):
+		player = body
+		player_in_cone = true
+
+func _on_detection_body_exited(body: Node) -> void:
+	if body == player:
+		player_in_cone = false
+		player_visible = false
+		player = null
+
+func _on_touch_body_entered(body: Node) -> void:
+	if !busy_with_player:
+		if body is Node2D and body.is_in_group("player"):
+			_on_player_touched(body)
+
+func _on_player_touched(the_player: Node2D) -> void:
+	# Placeholder: trigger "something" when touched
+	print("Player touched/caught!")
+	# Example tiny freeze to show it's working (remove later)
+	set_physics_process(false)
+	busy_with_player = true
+	if is_instance_valid(the_player):
+		the_player.set_physics_process(false)
+
+func _physics_process(delta: float) -> void:
+	if busy_with_player:
+		return
+		
+	player_visible = false
+
+	if player_in_cone and is_instance_valid(player):
+		var to_player := player.global_position - global_position
+		ray.global_position = global_position
+		ray.target_position = to_player
+		ray.force_raycast_update()
+
+		var hit := ray.get_collider()
+		# Visible if first hit is the player or nothing
+		if hit == player or hit == null:
+			player_visible = true
+
+	# Chase if visible
+	if player_visible and is_instance_valid(player):
+		var dir := (player.global_position - global_position).normalized()
+		velocity = dir * speed
+	else:
+		velocity = Vector2.ZERO
+
+	move_and_slide()
