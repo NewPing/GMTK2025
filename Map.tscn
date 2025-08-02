@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=4 uid="uid://xjohrqm8dvyt"]
+[gd_scene load_steps=6 format=4 uid="uid://xjohrqm8dvyt"]
 
 [ext_resource type="TileSet" uid="uid://dmvthur7s061i" path="res://Map.tres" id="1_3h1ab"]
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7if1s"]
+vertices = PackedVector2Array(194.227, -320.219, 194.75, -299, 151.031, -299, 152.297, -321.203, 150.031, 21.9297, 9, 21.0625, 9, -112.906, 10.9063, -335, 150.328, -335)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6, 7, 8), PackedInt32Array(8, 3, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -113, -1, 31, 160, 32, 161, -289, 205, -289, 204, -330, 161, -331, 159, -345, 1, -345)])
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_7if1s")
@@ -20,8 +25,10 @@ tile_set = ExtResource("1_3h1ab")
 [node name="PrinceCharacter" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(-8, 72)
 
-[node name="Enemy" parent="." instance=ExtResource("4_7if1s")]
+[node name="EnemyRoom1" parent="." instance=ExtResource("4_7if1s")]
 position = Vector2(82, -113)
+waypoint_parent = NodePath("../WaypointsRoom1")
+nav_region = NodePath("../NavigationRegion2D")
 
 [node name="PrinceCharacter2" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(-39, 72)
@@ -33,5 +40,13 @@ position = Vector2(-74, 72)
 position = Vector2(-8, 77)
 zoom = Vector2(3, 3)
 
-[node name="Enemy2" parent="." instance=ExtResource("4_7if1s")]
-position = Vector2(90, -334)
+[node name="WaypointsRoom1" type="Node2D" parent="."]
+
+[node name="Waypoint1" type="Node2D" parent="WaypointsRoom1"]
+position = Vector2(81, -45)
+
+[node name="Waypoint2" type="Node2D" parent="WaypointsRoom1"]
+position = Vector2(83, -295)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_7if1s")
