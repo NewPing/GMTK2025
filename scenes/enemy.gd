@@ -57,6 +57,8 @@ func _physics_process(delta: float) -> void:
 
 	if player_in_cone and is_instance_valid(player):
 		var to_player := player.global_position - global_position
+		#rotate vision cone towards player position
+		detection_area.rotation = (player.global_position - detection_area.global_position).angle() - PI/2
 		ray.global_position = global_position
 		ray.target_position = to_player
 		ray.force_raycast_update()
