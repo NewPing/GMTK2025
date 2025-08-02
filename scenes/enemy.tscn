@@ -252,6 +252,7 @@ points = PackedVector2Array(5, 15, 18, -0.5, 22, -0.5, 35, 15, 30, 20, 10, 20)
 height = 28.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(1, 0.976381)
 script = ExtResource("1_md0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://xjohrqm8dvyt"]
+[gd_scene load_steps=7 format=4 uid="uid://xjohrqm8dvyt"]
 
 [ext_resource type="TileSet" uid="uid://dmvthur7s061i" path="res://Map.tres" id="1_3h1ab"]
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
+[ext_resource type="PackedScene" uid="uid://beyiqyyd1y4aw" path="res://scenes/minigame_quick_time.tscn" id="5_v6avs"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7if1s"]
 vertices = PackedVector2Array(194.227, -320.219, 194.75, -299, 151.031, -299, 152.297, -321.203, 150.031, 21.9297, 9, 21.0625, 9, -112.906, 10.9063, -335, 150.328, -335)
@@ -27,6 +28,7 @@ position = Vector2(-8, 72)
 
 [node name="EnemyRoom1" parent="." instance=ExtResource("4_7if1s")]
 position = Vector2(82, -113)
+minigame_scene = ExtResource("5_v6avs")
 waypoint_parent = NodePath("../WaypointsRoom1")
 nav_region = NodePath("../NavigationRegion2D")
 

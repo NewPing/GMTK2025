@@ -12,6 +12,7 @@ var player_visible := false
 var busy_with_player := false
 var _animated_sprite : AnimatedSprite2D
 @export var speed: float = 120.0
+@export var minigame_scene: PackedScene # assign MinigameQuickTime.tscn in Inspector
 #Pathfinding
 @export var waypoint_parent: NodePath
 @export var nav_region: NodePath
@@ -21,6 +22,7 @@ var path: PackedVector2Array = []
 var path_index: int = 0
 var wait_timer: float = 0.0
 var is_waiting: bool = false
+
 
 func _ready() -> void:
 	detection_area = $Area2D_Vision
@@ -59,9 +61,37 @@ func _on_touch_body_entered(body: Node) -> void:
 		if body is Node2D and body.is_in_group("player") and not _is_player_caught(body):
 			_on_player_touched(body)
 
-func _on_player_touched(the_player: Node2D) -> void:
-	emit_signal("player_touched", the_player)
-	busy_with_player = true
+func _on_player_touched(player: Node2D) -> void:
+	player.set_physics_process(false)
+	_start_minigame(player)
+
+func _start_minigame(the_player: Node2D) -> void:
+	if minigame_scene == null:
+		return
+	var ui := minigame_scene.instantiate()
+	get_tree().get_root().add_child(ui)  # or a dedicated CanvasLayer/UI node
+	ui.success.connect(_on_minigame_success)
+	ui.fail.connect(_on_minigame_fail)
+	ui.start(the_player, self)
+
+func _on_minigame_success(player: Node2D, enemy: Node2D) -> void:
+	if enemy != self: return
+	busy_with_player = true                  # enemy is now occupied
+	if is_instance_valid(player):
+		# Treat as “busy” (first pass: reuse is_caught to remove it from control pool)
+		if player.has_method("mark_caught"):
+			player.call("mark_caught")
+		emit_signal("player_touched", player)
+		player.set_physics_process(true)
+
+func _on_minigame_fail(player: Node2D, enemy: Node2D) -> void:
+	if enemy != self: return
+	# Player loses: mark caught; enemy remains active (no busy_with_player)
+	if is_instance_valid(player):
+		if player.has_method("mark_caught"):
+			player.call("mark_caught")
+		emit_signal("player_touched", player)
+		player.set_physics_process(true)
 
 func _physics_process(delta: float) -> void:
 	if busy_with_player:
@@ -119,7 +149,6 @@ func _request_path_to_next_waypoint() -> void:
 		var map_rid = nav_region_node.get_navigation_map()
 		path = NavigationServer2D.map_get_path(map_rid, global_position, waypoints[current_index], false)
 		path_index = 0
-		print(path.size())
 		
 func _on_reached_waypoint() -> void:
 	wait_timer = 3.0
