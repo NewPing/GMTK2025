@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var touch_area: Area2D = $Area2D_Touch
 @onready var ray: RayCast2D = $RayCast2D
 
+signal player_touched(player: Node2D)
+
 var player: Node2D = null
 var player_in_cone := false
 var player_visible := false
@@ -42,7 +44,8 @@ func _on_touch_body_entered(body: Node) -> void:
 
 func _on_player_touched(the_player: Node2D) -> void:
 	# Placeholder: trigger "something" when touched
-	print("Player touched/caught!")
+	emit_signal("player_touched", the_player)
+
 	# Example tiny freeze to show it's working (remove later)
 	set_physics_process(false)
 	busy_with_player = true
