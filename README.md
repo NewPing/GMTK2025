@@ -1,6 +1,6 @@
 # ♾️ Looping Escape (GMTK Game Jam 2025)
-- [itch.io page](https://itch.io/jam/gmtk-2025) 
-- Theme: LOOP
+[itch.io page](https://itch.io/jam/gmtk-2025) 
+Theme: LOOP
 
 ## 📌 Description
 A turn-based escape game built with Godot for GMTK Game Jam 2025 (Theme: “LOOP”).  
