@@ -1,21 +1,13 @@
 extends CharacterBody2D
 
-@export var speed: float = 180.0
+@export var speed: float = 180.0 
+var _animated_sprite : AnimatedSprite2D
 var is_current: bool = false
 var is_caught: bool = false
 var velocity_input: Vector2 = Vector2.ZERO
 
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D  # adjust if different
-
-func set_current(value: bool) -> void:
-	is_current = value
-
-func mark_caught() -> void:
-	is_caught = true
-	is_current = false
-	# Optional: play a "caught" animation if you have it
-	if anim and "caught" in anim.sprite_frames.get_animation_names():
-		anim.play("caught")
+func _ready():
+	_animated_sprite = $AnimatedSprite2D
 
 func _physics_process(_delta: float) -> void:
 	if is_current and not is_caught:
@@ -29,20 +21,28 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity_input = Vector2.ZERO
 		velocity = Vector2.ZERO
+	play_animation_based_on_direction(velocity)
 
-	_update_animation()
-
-func _update_animation() -> void:
-	if anim == null:
+func play_animation_based_on_direction(velocity: Vector2):
+	if(velocity == Vector2(0,0)):
+		_animated_sprite.play("idle")
 		return
-	if is_caught:
-		if "caught" in anim.sprite_frames.get_animation_names():
-			anim.play("caught")
+	# Determine the direction based on the velocity
+	if abs(velocity.x) > abs(velocity.y):
+		if velocity.x > 0:
+			_animated_sprite.play("runRight")
 		else:
-			anim.play("idle")
-		return
-
-	if is_current and velocity_input.length() > 0.0:
-		anim.play("walk")
+			_animated_sprite.play("runLeft")
 	else:
-		anim.play("idle")
+		if velocity.y > 0:
+			_animated_sprite.play("runDown")
+		else:
+			_animated_sprite.play("runUp")
+
+
+func set_current(value: bool) -> void:
+	is_current = value
+
+func mark_caught() -> void:
+	is_caught = true
+	is_current = false
