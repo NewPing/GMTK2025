@@ -19,18 +19,15 @@ tile_set = ExtResource("1_3h1ab")
 
 [node name="PrinceCharacter" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(-8, 72)
-speed = 180.0
 
 [node name="Enemy" parent="." instance=ExtResource("4_7if1s")]
 position = Vector2(82, -113)
 
 [node name="PrinceCharacter2" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(-39, 72)
-speed = 180.0
 
 [node name="PrinceCharacter3" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(-74, 72)
-speed = 180.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 77)

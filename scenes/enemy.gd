@@ -27,7 +27,7 @@ func _ready() -> void:
 	ray.exclude_parent = true
 
 func _on_detection_body_entered(body: Node) -> void:
-	if body is Node2D and body.is_in_group("player"):
+	if body is Node2D and body.is_in_group("player") and not _is_player_caught(body): # [CHANGED L28]
 		player = body
 		player_in_cone = true
 
@@ -39,7 +39,7 @@ func _on_detection_body_exited(body: Node) -> void:
 
 func _on_touch_body_entered(body: Node) -> void:
 	if !busy_with_player:
-		if body is Node2D and body.is_in_group("player"):
+		if body is Node2D and body.is_in_group("player") and not _is_player_caught(body): # [CHANGED L45]
 			_on_player_touched(body)
 
 func _on_player_touched(the_player: Node2D) -> void:
@@ -58,6 +58,12 @@ func _physics_process(delta: float) -> void:
 		
 	player_visible = false
 
+	# If our tracked player became caught, forget them
+	if player_in_cone and is_instance_valid(player) and _is_player_caught(player): # [CHANGED L72]
+		player_in_cone = false
+		player_visible = false
+		player = null
+
 	if player_in_cone and is_instance_valid(player):
 		var to_player := player.global_position - global_position
 		#rotate vision cone towards player position
@@ -68,7 +74,7 @@ func _physics_process(delta: float) -> void:
 
 		var hit := ray.get_collider()
 		# Visible if first hit is the player or nothing
-		if hit == player or hit == null:
+		if (hit == player or hit == null) and not _is_player_caught(player): # [CHANGED L86]
 			player_visible = true
 
 	# Chase if visible
@@ -79,3 +85,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	move_and_slide()
+
+func _is_player_caught(p: Node) -> bool: # [ADDED L103-L106]
+	# Assumes players share a script with a boolean property "is_caught"
+	return bool((p as Node).get("is_caught"))
