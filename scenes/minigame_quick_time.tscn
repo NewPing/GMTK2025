@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://beyiqyyd1y4aw"]
+
+[ext_resource type="Script" uid="uid://c6m0puxucfff4" path="res://scenes/minigame_quick_time.gd" id="1_1ddw7"]
+
+[node name="MinigameQuickTime" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1ddw7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SliderRoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 10.0
+offset_right = -130.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="CursorOutline" type="ColorRect" parent="CanvasLayer/SliderRoot"]
+layout_mode = 0
+offset_right = 402.0
+offset_bottom = 18.0
+
+[node name="Bar" type="ColorRect" parent="CanvasLayer/SliderRoot/CursorOutline"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 401.0
+offset_bottom = 17.0
+color = Color(0.995368, 0.352488, 0.285833, 1)
+
+[node name="HitZone" type="ColorRect" parent="CanvasLayer/SliderRoot/CursorOutline"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 1.0
+offset_right = 280.0
+offset_bottom = 17.0
+color = Color(0.0697452, 0.972083, 0.0593291, 1)
+
+[node name="Cursor" type="ColorRect" parent="CanvasLayer/SliderRoot/CursorOutline"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = -2.0
+offset_right = 137.0
+offset_bottom = 20.0
+
+[node name="InnerCursor" type="ColorRect" parent="CanvasLayer/SliderRoot/CursorOutline/Cursor"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 4.0
+offset_bottom = 21.0
+color = Color(0.172833, 0.172833, 0.172833, 1)

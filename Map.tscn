@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://xjohrqm8dvyt"]
+[gd_scene load_steps=6 format=4 uid="uid://xjohrqm8dvyt"]
 
 [ext_resource type="TileSet" uid="uid://dmvthur7s061i" path="res://Map.tres" id="1_3h1ab"]
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
+[ext_resource type="PackedScene" uid="uid://beyiqyyd1y4aw" path="res://scenes/minigame_quick_time.tscn" id="5_v6avs"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_7if1s")
@@ -22,6 +23,7 @@ position = Vector2(-8, 72)
 
 [node name="Enemy" parent="." instance=ExtResource("4_7if1s")]
 position = Vector2(82, -113)
+minigame_scene = ExtResource("5_v6avs")
 
 [node name="PrinceCharacter2" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(-39, 72)
@@ -35,3 +37,8 @@ zoom = Vector2(3, 3)
 
 [node name="Enemy2" parent="." instance=ExtResource("4_7if1s")]
 position = Vector2(90, -334)
+minigame_scene = ExtResource("5_v6avs")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="CharacterBody2D"]
