@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 180.0 
+@export var speed: float = 120.0 
 var _animated_sprite : AnimatedSprite2D
 var is_current: bool = false
 var is_caught: bool = false
@@ -9,6 +9,7 @@ var velocity_input: Vector2 = Vector2.ZERO
 func _ready():
 	_animated_sprite = $AnimatedSprite2D
 
+	
 func _physics_process(_delta: float) -> void:
 	if is_current and not is_caught:
 		var dir := Vector2(

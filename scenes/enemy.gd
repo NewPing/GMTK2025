@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@onready var detection_area: Area2D = $Area2D_Vision
-@onready var touch_area: Area2D = $Area2D_Touch
-@onready var ray: RayCast2D = $RayCast2D
+var detection_area: Area2D
+var touch_area: Area2D
+var ray: RayCast2D
 
 signal player_touched(player: Node2D)
 
@@ -10,10 +10,15 @@ var player: Node2D = null
 var player_in_cone := false
 var player_visible := false
 var busy_with_player := false
+var _animated_sprite : AnimatedSprite2D
 
 @export var speed: float = 120.0
 
 func _ready() -> void:
+	detection_area = $Area2D_Vision
+	touch_area = $Area2D_Touch
+	ray = $RayCast2D
+	_animated_sprite = $AnimatedSprite2D
 	# Vision cone signals
 	detection_area.body_entered.connect(_on_detection_body_entered)
 	detection_area.body_exited.connect(_on_detection_body_exited)
@@ -83,9 +88,26 @@ func _physics_process(delta: float) -> void:
 		velocity = dir * speed
 	else:
 		velocity = Vector2.ZERO
-
+		
+	play_animation_based_on_direction(velocity)
 	move_and_slide()
 
 func _is_player_caught(p: Node) -> bool: # [ADDED L103-L106]
 	# Assumes players share a script with a boolean property "is_caught"
 	return bool((p as Node).get("is_caught"))
+	
+func play_animation_based_on_direction(velocity: Vector2):
+	if(velocity == Vector2(0,0)):
+		_animated_sprite.play("idle")
+		return
+	# Determine the direction based on the velocity
+	if abs(velocity.x) > abs(velocity.y):
+		if velocity.x > 0:
+			_animated_sprite.play("runRight")
+		else:
+			_animated_sprite.play("runLeft")
+	else:
+		if velocity.y > 0:
+			_animated_sprite.play("runDown")
+		else:
+			_animated_sprite.play("runUp")
