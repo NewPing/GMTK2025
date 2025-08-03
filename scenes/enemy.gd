@@ -14,7 +14,7 @@ var _animated_sprite : AnimatedSprite2D
 
 @export var speed: float = 120.0
 var minigame_scene: PackedScene # Will be loaded automatically
-
+var fight
 #Pathfinding
 @export var waypoint_parent: NodePath
 
@@ -30,7 +30,8 @@ func _ready() -> void:
 	ray = $RayCast2D
 	_animated_sprite = $AnimatedSprite2D
 	minigame_scene = preload("res://scenes/minigame_quick_time.tscn")
-	
+	fight = preload("res://scenes/fight.tscn").instantiate()
+
 	detection_area.body_entered.connect(_on_detection_body_entered)
 	detection_area.body_exited.connect(_on_detection_body_exited)
 	touch_area.body_entered.connect(_on_touch_body_entered)
@@ -76,12 +77,15 @@ func _start_minigame(the_player: Node2D) -> void:
 	if minigame_scene == null:
 		return
 	var ui := minigame_scene.instantiate()
+	add_child(fight)
+	fight.global_position = the_player.global_position
 	get_tree().get_root().add_child(ui)
 	ui.success.connect(_on_minigame_success)
 	ui.fail.connect(_on_minigame_fail)
 	ui.start(the_player, self)
 
 func _on_minigame_success(player: Node2D, enemy: Node2D) -> void:
+	fight.queue_free()
 	if enemy != self:
 		return
 	busy_with_player = true
@@ -92,6 +96,7 @@ func _on_minigame_success(player: Node2D, enemy: Node2D) -> void:
 		player.set_physics_process(true)
 
 func _on_minigame_fail(player: Node2D, enemy: Node2D) -> void:
+	fight.queue_free()
 	if enemy != self:
 		return
 	if is_instance_valid(player):
