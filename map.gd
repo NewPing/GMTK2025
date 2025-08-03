@@ -7,6 +7,7 @@ var current_index: int = 0
 @onready var dash_ui: Control = $Camera2D/DashCooldownDisplay
 @onready var DeathScreen: Control = $Camera2D/Deathscreen
 @onready var musicPlayer : AudioStreamPlayer2D = $musicPlayer
+@onready var endzone: Area2D = $Area2D
 
 func _ready() -> void:
 	var raw_players: Array = get_tree().get_nodes_in_group("player")
@@ -34,11 +35,17 @@ func _ready() -> void:
 	for e in enemies:
 		if e and e.has_signal("player_touched"):
 			e.player_touched.connect(_on_player_caught)
+			
+	endzone.body_entered.connect(_on_endzone_body_entered)
 
 func _process(delta: float) -> void:
 	var curr: Node2D = _current_player()
 	if curr and camera:
 		camera.global_position = curr.global_position
+
+func _on_endzone_body_entered(body: Node) -> void:
+	if body is Node2D and body.is_in_group("player"):
+		showDeathScreen()
 
 func _connect_dash_ui_to_player(player_node: Node2D) -> void: # NEW Function
 	# Disconnect previous player's signal if any
