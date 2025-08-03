@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://beyiqyyd1y4aw"]
 
-[ext_resource type="Script" uid="uid://c6m0puxucfff4" path="res://scenes/minigame_quick_time.gd" id="1_1ddw7"]
+[ext_resource type="Script" path="res://scenes/minigame_quick_time.gd" id="1_1ddw7"]
 
 [node name="MinigameQuickTime" type="Control"]
 layout_mode = 3

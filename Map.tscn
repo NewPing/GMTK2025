@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
 [ext_resource type="AudioStream" uid="uid://ctr2da2t4gi32" path="res://resources/voilin-game.mp3" id="6_0f2yp"]
-[ext_resource type="PackedScene" uid="uid://c18y7yygcygu7" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
+[ext_resource type="PackedScene" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
 [ext_resource type="Theme" uid="uid://bncul0l835l7l" path="res://resources/custom_theme.tres" id="6_vm4q1"]
-[ext_resource type="Script" uid="uid://w8u37bolw7uj" path="res://deathscreen.gd" id="7_0f2yp"]
+[ext_resource type="Script" path="res://deathscreen.gd" id="7_0f2yp"]
 [ext_resource type="FontFile" uid="uid://ci2qllcy4f3yr" path="res://resources/ARCADECLASSIC.TTF" id="7_ud676"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v6avs"]

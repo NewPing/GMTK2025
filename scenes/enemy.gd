@@ -23,6 +23,7 @@ var waypoints: Array[Vector2] = []
 var current_index: int = 0
 var wait_timer: float = 0.0
 var is_waiting: bool = false
+var last_direction := Vector2.DOWN
 
 func _ready() -> void:
 	detection_area = $Area2D_Vision
@@ -152,9 +153,10 @@ func _physics_process(delta: float) -> void:
 			navigationAgent.set_velocity(dir * speed)
 
 	if velocity != Vector2.ZERO:
+		last_direction = velocity.normalized()
 		detection_area.rotation = velocity.angle() - PI / 2
 	else:
-		detection_area.rotation = 0
+		detection_area.rotation = last_direction.angle() - PI/2
 
 	play_animation_based_on_direction(velocity)
 	move_and_slide()
@@ -167,15 +169,26 @@ func _is_player_caught(p: Node) -> bool:
 
 func play_animation_based_on_direction(velocity: Vector2) -> void:
 	if velocity == Vector2.ZERO:
-		_animated_sprite.play("idle")
-		return
-	if abs(velocity.x) > abs(velocity.y):
-		if velocity.x > 0:
-			_animated_sprite.play("runRight")
+		# Use last_direction to determine which idle animation to play
+		if abs(last_direction.x) > abs(last_direction.y):
+			if last_direction.x > 0:
+				_animated_sprite.play("idleRight")
+			else:
+				_animated_sprite.play("idleLeft")
 		else:
-			_animated_sprite.play("runLeft")
+			if last_direction.y > 0:
+				_animated_sprite.play("idleDown")
+			else:
+				_animated_sprite.play("idleUp")
 	else:
-		if velocity.y > 0:
-			_animated_sprite.play("runDown")
+		# When moving, update and play appropriate run animation
+		if abs(velocity.x) > abs(velocity.y):
+			if velocity.x > 0:
+				_animated_sprite.play("runRight")
+			else:
+				_animated_sprite.play("runLeft")
 		else:
-			_animated_sprite.play("runUp")
+			if velocity.y > 0:
+				_animated_sprite.play("runDown")
+			else:
+				_animated_sprite.play("runUp")
