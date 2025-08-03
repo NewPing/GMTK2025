@@ -1,11 +1,19 @@
-[gd_scene load_steps=8 format=4 uid="uid://xjohrqm8dvyt"]
+[gd_scene load_steps=14 format=4 uid="uid://xjohrqm8dvyt"]
 
 [ext_resource type="TileSet" uid="uid://dmvthur7s061i" path="res://Map.tres" id="1_3h1ab"]
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
 [ext_resource type="AudioStream" uid="uid://ctr2da2t4gi32" path="res://resources/voilin-game.mp3" id="6_0f2yp"]
-[ext_resource type="PackedScene" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
+[ext_resource type="PackedScene" uid="uid://c18y7yygcygu7" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
+[ext_resource type="Theme" uid="uid://bncul0l835l7l" path="res://resources/custom_theme.tres" id="6_vm4q1"]
+[ext_resource type="Script" uid="uid://w8u37bolw7uj" path="res://deathscreen.gd" id="7_0f2yp"]
+[ext_resource type="FontFile" uid="uid://ci2qllcy4f3yr" path="res://resources/ARCADECLASSIC.TTF" id="7_ud676"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7if1s"]
+vertices = PackedVector2Array(149, 20.1172, 10.7891, 21.8672, 3.21875, -336, 149, -336)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-7, -346, 1, 32, 159, 30, 159, -346)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v6avs"]
 vertices = PackedVector2Array(1172.11, -327.094, 1177.88, 186.961, 569.781, 185.031, 558.227, -332.898, 149.969, 18, 10.0313, 18, 10.9688, -335, 149.031, -335, 503, -15.8984, 222, -13.1016, 222, -90, 503, -90, 362, -330.117, 362, -190.063, 224, -190.93, 224, -331.867, 2033.39, 6, 2123.89, -191.969, 2121.1, 80, 2032.99, 42, 1566.97, -6, 1566.79, 10, 1456.99, 42, 1457.39, 6, 1566.24, -6, 1758.97, -6, 1758.79, 10, 1648.99, 42, 1649.39, 6, 1758.24, -6, 1950.97, -6, 1950.79, 10, 1840.99, 42, 1841.39, 6, 1950.24, -6, 1566.97, -134, 1566.79, -118, 1456.99, -86, 1457.39, -122, 1566.24, -134, 1758.97, -134, 1758.79, -118, 1648.99, -86, 1649.39, -122, 1758.24, -134, 1950.97, -134, 1950.79, -118, 1840.99, -86, 1841.39, -122, 1950.24, -134, 2033.21, 6, 2033.39, -10, 2033.21, -10, 2033.39, -26, 2032.99, -86, 2033.39, -122, 2032.59, -26, 2032.43, -30.9766, 2026, -32.3125, 2010, -32.1328, 2010, -32.3125, 2019.72, -80.3438, 2032.43, -80.3438, 1994, -32.1328, 1994, -32.3125, 2006, -79.6094, 1841.21, 6, 1841.39, -10, 1951.02, -32.2578, 1841.21, -10, 1841.39, -26, 1834, -32.3125, 1818, -32.1328, 1818, -32.3125, 1827.72, -80.3438, 1840.43, -80.3438, 1802, -32.1328, 1802, -32.3125, 1814, -79.6094, 1649.21, 6, 1649.39, -10, 1759.02, -32.2578, 1649.21, -10, 1649.39, -26, 1642, -32.3125, 1626, -32.1328, 1626, -32.3125, 1635.72, -80.3438, 1648.43, -80.3438, 1610, -32.1328, 1610, -32.3125, 1622, -79.6094, 1457.21, 6, 1457.39, -10, 1567.02, -32.2578, 1457.21, -10, 1457.39, -26, 1450, -32.3125, 1434, -32.1328, 1434, -32.3125, 1443.72, -80.3438, 1456.43, -80.3438, 1418, -32.1328, 1418, -32.3125, 1430, -79.6094, 1374.24, -6, 1374.97, -6, 1374.79, 10, 1268, 80, 1374.97, 10, 1374.79, 26, 1374.97, 26, 1374.79, 42, 1566.97, 10, 1566.79, 26, 1566.97, 26, 1566.79, 42, 1758.97, 10, 1758.79, 26, 1758.97, 26, 1758.79, 42, 1950.97, 10, 1950.79, 26, 1950.97, 26, 1950.79, 42, 2033.21, -122, 2033.39, -138, 2033.21, -138, 2033.39, -154, 2026, -160.313, 2010, -160.133, 2010, -160.313, 1994, -160.133, 1994, -160.313, 1841.21, -122, 1841.39, -138, 1951.02, -160.258, 1841.21, -138, 1841.39, -154, 1834, -160.313, 1818, -160.133, 1818, -160.313, 1802, -160.133, 1802, -160.313, 1649.21, -122, 1649.39, -138, 1759.02, -160.258, 1649.21, -138, 1649.39, -154, 1642, -160.313, 1626, -160.133, 1626, -160.313, 1610, -160.133, 1610, -160.313, 1457.21, -122, 1457.39, -138, 1567.02, -160.258, 1457.21, -138, 1457.39, -154, 1450, -160.313, 1434, -160.133, 1434, -160.313, 1418, -160.133, 1418, -160.313, 1374.24, -134, 1374.97, -134, 1374.79, -118, 1374.97, -118, 1374.79, -102, 1374.97, -102, 1374.79, -86, 1566.97, -118, 1566.79, -102, 1566.97, -102, 1566.79, -86, 1758.97, -118, 1758.79, -102, 1758.97, -102, 1758.79, -86, 1950.97, -118, 1950.79, -102, 1950.97, -102, 1950.79, -86, 2032.61, -86, 2026, -31.3203, 1375.08, 42, 1375.08, 47.8438, 1402, 47.8438, 1402, 47.6563, 1430, 47.6563, 1430, 48.3906, 1567.08, 42, 1567.08, 47.8438, 1594, 47.8438, 1594, 47.6563, 1622, 47.6563, 1622, 48.3906, 1759.08, 42, 1759.08, 47.8438, 1786, 47.8438, 1786, 47.6563, 1814, 47.6563, 1814, 48.3906, 1951.08, 42, 1951.08, 47.8438, 1978, 47.8438, 1978, 47.6563, 2006, 47.6563, 2006, 48.3906, 1375.08, -86, 1375.08, -80.1563, 1375.02, -32.2578, 1402, -80.1563, 1402, -80.3438, 1430, -80.3438, 1567.08, -86, 1567.08, -80.1563, 1594, -80.1563, 1594, -80.3438, 1622, -80.3438, 1759.08, -86, 1759.08, -80.1563, 1786, -80.1563, 1786, -80.3438, 1814, -80.3438, 1951.08, -86, 1951.08, -80.1563, 1978, -80.1563, 1978, -80.3438, 2006, -80.3438, 1963.06, -31.9609, 1456.43, 47.6563, 1456.61, 42, 1648.43, 47.6563, 1648.61, 42, 1840.43, 47.6563, 1840.61, 42, 2032.43, 47.6563, 2032.61, 42, 1456.61, -86, 1579.06, -31.9609, 1648.61, -86, 1771.06, -31.9609, 1840.43, -30.9766, 1840.61, -86, 1840.59, -26, 1648.59, -26, 1648.43, -30.9766, 1456.59, -26, 1456.43, -30.9766, 2032.59, -154, 2032.43, -158.977, 1840.59, -154, 1840.43, -158.977, 1648.59, -154, 1648.43, -158.977, 1456.59, -154, 1456.43, -158.977, 1834, -31.3203, 1642, -31.3203, 1450, -31.3203, 1387.06, -31.9609, 2026, -159.32, 1834, -159.32, 1642, -159.32, 1450, -159.32, 1268, -190.023, 1963.06, -159.961, 1771.06, -159.961, 1579.06, -159.961, 1387.06, -159.961, 1375.02, -160.258, 1443.72, 47.6563, 1635.72, 47.6563, 1827.72, 47.6563, 2019.72, 47.6563)
@@ -51,6 +59,111 @@ offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.3, 0.288)
+
+[node name="Deathscreen" type="Control" parent="Camera2D"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = -77.0
+offset_right = 50.0
+offset_bottom = -37.0
+script = ExtResource("7_0f2yp")
+
+[node name="Milk" type="Panel" parent="Camera2D/Deathscreen"]
+modulate = Color(0, 0, 0, 0.951)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -243.0
+offset_top = -57.0
+offset_right = -243.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(11.64, 6.64)
+
+[node name="Panel2" type="Panel" parent="Camera2D/Deathscreen"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -3.0
+offset_right = 342.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("6_vm4q1")
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D/Deathscreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = 59.0
+offset_right = 195.0
+offset_bottom = 211.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.577)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Deathscreen/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spacer3" type="Label" parent="Camera2D/Deathscreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "                                                                                                               "
+
+[node name="Play" type="Button" parent="Camera2D/Deathscreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_vm4q1")
+theme_override_fonts/font = ExtResource("7_ud676")
+theme_override_font_sizes/font_size = 28
+text = "Restart"
+
+[node name="Spacer2" type="Label" parent="Camera2D/Deathscreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "                                                                                                               "
+
+[node name="Quit" type="Button" parent="Camera2D/Deathscreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_vm4q1")
+theme_override_fonts/font = ExtResource("7_ud676")
+theme_override_font_sizes/font_size = 28
+text = "Quit"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Camera2D/Deathscreen"]
+layout_mode = 2
+offset_left = -92.0
+offset_top = 21.0
+offset_right = 243.0
+offset_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Camera2D/Deathscreen/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title7" type="Label" parent="Camera2D/Deathscreen/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ud676")
+theme_override_font_sizes/font_size = 50
+text = "You    Escaped!
+       did   you?"
 
 [node name="WaypointsRoom1" type="Node2D" parent="."]
 
@@ -288,3 +401,56 @@ position = Vector2(2083, -177)
 stream = ExtResource("6_0f2yp")
 autoplay = true
 parameters/looping = true
+
+[node name="Shading" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_right = 44.0
+offset_bottom = 40.0
+script = ExtResource("7_0f2yp")
+
+[node name="Shade2" type="Panel" parent="Shading"]
+modulate = Color(0, 0, 0, 0.951)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -351.0
+offset_right = -8.0
+offset_bottom = -351.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.24, 9.7572)
+
+[node name="Shade5" type="Panel" parent="Shading"]
+modulate = Color(0, 0, 0, 0.951)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 537.0
+offset_top = -350.0
+offset_right = 652.0
+offset_bottom = -262.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.24, 4.3572)
+
+[node name="Shade6" type="Panel" parent="Shading"]
+modulate = Color(0, 0, 0, 0.951)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2187.0
+offset_top = -346.0
+offset_right = 2302.0
+offset_bottom = -258.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.24, 4.3572)
+
+[connection signal="pressed" from="Camera2D/Deathscreen/MarginContainer/VBoxContainer/Play" to="Camera2D/Deathscreen" method="_on_play_pressed"]
+[connection signal="pressed" from="Camera2D/Deathscreen/MarginContainer/VBoxContainer/Quit" to="Camera2D/Deathscreen" method="_on_quit_pressed"]
