@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
-[ext_resource type="PackedScene" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
+[ext_resource type="PackedScene" uid="uid://c18y7yygcygu7" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7if1s"]
 vertices = PackedVector2Array(149, 20.1172, 10.7891, 21.8672, 3.21875, -336, 149, -336)

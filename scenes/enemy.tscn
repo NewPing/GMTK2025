@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://b0ewd423vy7hu"]
+[gd_scene load_steps=39 format=3 uid="uid://b0ewd423vy7hu"]
 
 [ext_resource type="Texture2D" uid="uid://c1l2oedwa8vfp" path="res://resources/Characters_free/Alex_idle_anim_16x16.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://d008wc7ahrc3e" path="res://scenes/enemy.gd" id="1_md0e3"]
@@ -246,7 +246,9 @@ animations = [{
 }]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_7p1mj"]
-points = PackedVector2Array(5, 15, 18, -0.5, 22, -0.5, 35, 15, 30, 20, 10, 20)
+points = PackedVector2Array(7.54717, 12.0923, 18, -0.5, 22, -0.5, 32.5472, 12.0923, 31.6038, 15.9887, 28.7736, 18.2152, 20.0472, 20.1634, 11.7925, 18.2152, 8.25472, 15.9887)
+
+[sub_resource type="MeshTexture" id="MeshTexture_4ra3w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_md0e3"]
 height = 28.0
@@ -269,6 +271,13 @@ animation = &"idle"
 position = Vector2(-85, 19)
 scale = Vector2(4.24, 3.68)
 shape = SubResource("ConvexPolygonShape2D_7p1mj")
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D_Vision"]
+modulate = Color(1, 1, 1, 0.116)
+use_parent_material = true
+position = Vector2(-97, -32.7741)
+texture = SubResource("MeshTexture_4ra3w")
+polygon = PackedVector2Array(106, 50.1853, 88, 50.1853, 44, 96.2739, 47, 110.613, 62, 118.806, 96.7079, 125.975, 134, 118.806, 146, 110.613, 150, 96.2739)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 95)
