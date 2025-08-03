@@ -1,7 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://b0ewd423vy7hu"]
+[gd_scene load_steps=40 format=3 uid="uid://b0ewd423vy7hu"]
 
 [ext_resource type="Texture2D" uid="uid://c1l2oedwa8vfp" path="res://resources/Characters_free/Alex_idle_anim_16x16.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://d008wc7ahrc3e" path="res://scenes/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://r4g6u55fieyo" path="res://resources/Characters_free/alex_dead.png" id="2_5uy6h"]
 [ext_resource type="Texture2D" uid="uid://f70sc7nduwu8" path="res://resources/Characters_free/Alex_run_16x16.png" id="3_4ra3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnhhq"]
@@ -131,6 +132,14 @@ region = Rect2(176, 0, 16, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_5uy6h")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_md0e3")
 }, {
 "duration": 1.0,
@@ -243,6 +252,11 @@ animations = [{
 "loop": true,
 "name": &"runUp",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
 }]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_7p1mj"]
@@ -263,7 +277,7 @@ shape = SubResource("RectangleShape2D_mnhhq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j6ih3")
-animation = &"idle"
+animation = &"death"
 
 [node name="Area2D_Vision" type="Area2D" parent="."]
 

@@ -46,13 +46,17 @@ func _physics_process(_delta: float) -> void:
 
 		move_and_slide()
 		emit_dash_progress()
-	else:
+	elif (!is_current and !is_caught):
 		velocity_input = Vector2.ZERO
 		velocity = Vector2.ZERO
 		is_dashing = false
 		dash_timer = 0.0
 		dash_cooldown_timer = 0.0
 		emit_dash_progress()
+	else:
+		_animated_sprite.play("sit")
+		velocity = Vector2.ZERO
+		return
 	play_animation_based_on_direction(velocity)
 	
 func emit_dash_progress() -> void:

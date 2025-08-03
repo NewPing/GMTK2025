@@ -24,7 +24,7 @@ script = ExtResource("1_osnhv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5mf5x")
-frame_progress = 0.847312
+frame_progress = 0.288749
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_5mf5x")
