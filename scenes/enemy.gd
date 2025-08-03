@@ -14,6 +14,7 @@ var _animated_sprite : AnimatedSprite2D
 
 @export var speed: float = 120.0
 var minigame_scene: PackedScene # Will be loaded automatically
+var FightScene := preload("res://scenes/fight.tscn")
 var fight
 #Pathfinding
 @export var waypoint_parent: NodePath
@@ -31,7 +32,6 @@ func _ready() -> void:
 	ray = $RayCast2D
 	_animated_sprite = $AnimatedSprite2D
 	minigame_scene = preload("res://scenes/minigame_quick_time.tscn")
-	fight = preload("res://scenes/fight.tscn").instantiate()
 
 	detection_area.body_entered.connect(_on_detection_body_entered)
 	detection_area.body_exited.connect(_on_detection_body_exited)
@@ -43,8 +43,8 @@ func _ready() -> void:
 	navigationAgent = $NavigationAgent2D
 	navigationAgent.avoidance_enabled = true
 	navigationAgent.radius = 14
-#	navigationAgent.velocity_computed.connect(_on_velocity_computed)
-
+	navigationAgent.velocity_computed.connect(_on_velocity_computed)
+	
 	var wp_node = get_node(waypoint_parent)
 	for child in wp_node.get_children():
 		if child is Node2D:
@@ -52,7 +52,10 @@ func _ready() -> void:
 
 	await get_tree().process_frame
 	navigationAgent.set_target_position(waypoints[current_index])
-
+	
+func _on_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
+	
 func _on_detection_body_entered(body: Node) -> void:
 	if body is Node2D and body.is_in_group("player") and not _is_player_caught(body):
 		player = body
@@ -78,6 +81,9 @@ func _start_minigame(the_player: Node2D) -> void:
 	if minigame_scene == null:
 		return
 	var ui := minigame_scene.instantiate()
+	fight = FightScene.instantiate()
+	add_child(fight)
+	fight.global_position = the_player.global_position
 	add_child(fight)
 	fight.global_position = the_player.global_position
 	get_tree().get_root().add_child(ui)
@@ -134,22 +140,19 @@ func _physics_process(delta: float) -> void:
 		velocity = dir * speed
 		
 	else:
+		if navigationAgent.is_navigation_finished():
+			is_waiting = true
+			wait_timer = 2.0
+			current_index = (current_index + 1) % waypoints.size()
+			navigationAgent.set_target_position(waypoints[current_index])
 		if is_waiting:
 			velocity = Vector2.ZERO
 			wait_timer -= delta
 			if wait_timer <= 0.0:
 				is_waiting = false
-
-		if !is_waiting and navigationAgent.is_navigation_finished():
-			wait_timer = 3.0
-			is_waiting = true
-			current_index = (current_index + 1) % waypoints.size()
-			navigationAgent.set_target_position(waypoints[current_index])
-
-		if !is_waiting and !navigationAgent.is_navigation_finished():
+		else:
 			var next_pos = navigationAgent.get_next_path_position()
 			var dir = (next_pos - global_position).normalized()
-			velocity = dir * speed
 			navigationAgent.set_velocity(dir * speed)
 
 	if velocity != Vector2.ZERO:

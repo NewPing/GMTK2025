@@ -48,28 +48,28 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -330.0
-offset_top = 107.0
-offset_right = 278.0
-offset_bottom = 217.0
+offset_left = -399.0
+offset_top = 115.0
+offset_right = 435.0
+offset_bottom = 225.0
 grow_horizontal = 2
 scale = Vector2(1, 1.2856)
 theme_override_colors/font_color = Color(0.857332, 0.612108, 0.0706111, 1)
 theme_override_fonts/font = ExtResource("4_xd3qs")
 theme_override_font_sizes/font_size = 80
-text = "♾️ Escape    Loop"
+text = "♾️ Escape, Die, Repeat"
 
 [node name="ScaleHorde" type="Sprite2D" parent="Title"]
-position = Vector2(692, 63.7836)
-scale = Vector2(0.2, 0.119772)
+position = Vector2(918.739, 124.287)
+scale = Vector2(0.148708, 0.0890552)
 texture = ExtResource("3_8ux07")
 
 [node name="Title3" type="Label" parent="Title"]
 layout_mode = 0
-offset_left = 452.0
-offset_top = 75.4511
-offset_right = 872.0
-offset_bottom = 268.451
+offset_left = 666.0
+offset_top = 97.2309
+offset_right = 1086.0
+offset_bottom = 290.231
 scale = Vector2(1, 0.924431)
 theme_override_fonts/font = ExtResource("4_xd3qs")
 theme_override_font_sizes/font_size = 20
