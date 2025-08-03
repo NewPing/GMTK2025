@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://bncul0l835l7l" path="res://resources/custom_theme.tres" id="3_f27c7"]
 [ext_resource type="FontFile" uid="uid://ci2qllcy4f3yr" path="res://resources/ARCADECLASSIC.TTF" id="4_xd3qs"]
 [ext_resource type="Texture2D" uid="uid://b4fdwyo76m4bm" path="res://resources/wasd_space_shift2.png" id="6_v86rl"]
-[ext_resource type="AudioStream" uid="uid://bixu43ym67iq7" path="res://resources/sound/music.mp3" id="8_t4sfl"]
+[ext_resource type="AudioStream" uid="uid://b6pjfp8dy1fbc" path="res://resources/violin-menu.mp3" id="7_v86rl"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("optionsField")]
 layout_mode = 3
@@ -224,7 +224,7 @@ quicktime    events"
 horizontal_alignment = 1
 
 [node name="musicPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_t4sfl")
+stream = ExtResource("7_v86rl")
 parameters/looping = false
 
 [node name="Title2" type="Label" parent="."]

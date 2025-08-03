@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://xjohrqm8dvyt"]
+[gd_scene load_steps=11 format=4 uid="uid://xjohrqm8dvyt"]
 
 [ext_resource type="TileSet" uid="uid://dmvthur7s061i" path="res://Map.tres" id="1_3h1ab"]
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
+[ext_resource type="AudioStream" uid="uid://ctr2da2t4gi32" path="res://resources/voilin-game.mp3" id="6_0f2yp"]
 [ext_resource type="PackedScene" uid="uid://c18y7yygcygu7" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7if1s"]
@@ -41,13 +42,13 @@ tile_map_data = PackedByteArray("AAD4/wMAAQAQAAYAAAD5/wIAAQAQAAYAAAD5/wMAAQAPAAY
 tile_set = ExtResource("1_3h1ab")
 
 [node name="PrinceCharacter" parent="." instance=ExtResource("3_3h1ab")]
-position = Vector2(-8, 72)
+position = Vector2(120, 175)
 
 [node name="PrinceCharacter2" parent="." instance=ExtResource("3_3h1ab")]
-position = Vector2(-39, 72)
+position = Vector2(88, 175)
 
 [node name="PrinceCharacter3" parent="." instance=ExtResource("3_3h1ab")]
-position = Vector2(-74, 72)
+position = Vector2(56, 175)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 77)
@@ -214,3 +215,8 @@ position = Vector2(864, -308)
 
 [node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom4/Five"]
 position = Vector2(873, 158)
+
+[node name="musicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_0f2yp")
+autoplay = true
+parameters/looping = true
