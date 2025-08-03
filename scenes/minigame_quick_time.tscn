@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://beyiqyyd1y4aw"]
 
-[ext_resource type="Script" path="res://scenes/minigame_quick_time.gd" id="1_1ddw7"]
+[ext_resource type="Script" uid="uid://c6m0puxucfff4" path="res://scenes/minigame_quick_time.gd" id="1_1ddw7"]
 
 [node name="MinigameQuickTime" type="Control"]
 layout_mode = 3
@@ -8,6 +8,9 @@ anchors_preset = 0
 script = ExtResource("1_1ddw7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(-60, 0)
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, -60, 0)
 
 [node name="SliderRoot" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -21,9 +24,14 @@ offset_bottom = 50.0
 grow_horizontal = 2
 
 [node name="CursorOutline" type="ColorRect" parent="CanvasLayer/SliderRoot"]
-layout_mode = 0
-offset_right = 402.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -201.0
+offset_right = 201.0
 offset_bottom = 18.0
+grow_horizontal = 2
 
 [node name="Bar" type="ColorRect" parent="CanvasLayer/SliderRoot/CursorOutline"]
 layout_mode = 0
