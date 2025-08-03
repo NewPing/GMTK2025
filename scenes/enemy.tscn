@@ -278,3 +278,5 @@ target_position = Vector2(0, 95)
 [node name="Touch_CollisionShape2D" type="CollisionShape2D" parent="Area2D_Touch"]
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_md0e3")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
