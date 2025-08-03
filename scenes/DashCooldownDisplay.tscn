@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://c18y7yygcygu7"]
+
+[ext_resource type="Script" uid="uid://dhqhqeh56w4n7" path="res://scenes/dash_cooldown_display.gd" id="1_77dny"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77dny"]
+bg_color = Color(0.46703, 0.657965, 0.464676, 1)
+corner_detail = 20
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_77dny")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 37.0
+offset_right = 213.0
+offset_bottom = 64.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_77dny")
+value = 25.0
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -121.0
+offset_top = -52.0
+offset_right = -81.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Dash"
+horizontal_alignment = 2

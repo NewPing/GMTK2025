@@ -4,6 +4,7 @@ var players: Array[Node2D] = []
 var current_index: int = 0
 
 @onready var camera: Camera2D = $Camera2D
+@onready var dash_ui: Control = $Camera2D/DashCooldownDisplay
 
 func _ready() -> void:
 	var raw_players: Array = get_tree().get_nodes_in_group("player")
@@ -24,6 +25,7 @@ func _ready() -> void:
 	for i in range(players.size()):
 		players[i].call("set_current", i == current_index)
 
+	_connect_dash_ui_to_player(players[current_index])
 	_attach_camera_to(players[current_index])
 
 	var enemies: Array = get_tree().get_nodes_in_group("enemy")
@@ -35,6 +37,24 @@ func _process(delta: float) -> void:
 	var curr: Node2D = _current_player()
 	if curr and camera:
 		camera.global_position = curr.global_position
+
+func _connect_dash_ui_to_player(player_node: Node2D) -> void: # NEW Function
+	# Disconnect previous player's signal if any
+	for p in players: # Iterate all players to disconnect any existing connection
+		if p.is_connected("dash_progress_updated", _on_player_dash_progress_updated):
+			p.disconnect("dash_progress_updated", _on_player_dash_progress_updated)
+
+	# Connect new player's signal
+	if player_node and dash_ui:
+		# Check if the player actually has the signal (e.g., if he's a PrinceCharacter)
+		if player_node.has_signal("dash_progress_updated"):
+			player_node.connect("dash_progress_updated", _on_player_dash_progress_updated)
+			# Immediately update the UI with current state
+			player_node.call("emit_dash_progress") # Request initial update
+
+func _on_player_dash_progress_updated(progress: float) -> void: # NEW Function
+	if dash_ui:
+		dash_ui.call("update_progress", progress)
 
 func _current_player() -> Node2D:
 	if current_index >= 0 and current_index < players.size():
@@ -52,17 +72,19 @@ func _on_player_caught(caught_player: Node2D) -> void:
 		caught_player.call("set_current", false)
 		if caught_player.has_method("mark_caught"):
 			caught_player.call("mark_caught")
-
+	
 	var next_index: int = _find_nearest_uncaught_index(caught_player)
 	if next_index == -1:
 		print("No uncaught players left. Game over?")
 		return
-
+	
 	current_index = next_index
-
+	
 	for i in range(players.size()):
 		players[i].call("set_current", i == current_index)
-
+	
+	_connect_dash_ui_to_player(players[current_index])
+	
 	_attach_camera_to(players[current_index])
 
 func _find_nearest_uncaught_index(exclude_player: Node2D) -> int:

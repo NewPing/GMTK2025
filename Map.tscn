@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://xjohrqm8dvyt"]
+[gd_scene load_steps=8 format=4 uid="uid://xjohrqm8dvyt"]
 
 [ext_resource type="TileSet" uid="uid://dmvthur7s061i" path="res://Map.tres" id="1_3h1ab"]
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
 [ext_resource type="PackedScene" uid="uid://beyiqyyd1y4aw" path="res://scenes/minigame_quick_time.tscn" id="5_v6avs"]
+[ext_resource type="PackedScene" uid="uid://c18y7yygcygu7" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7if1s"]
 vertices = PackedVector2Array(194.227, -320.219, 194.75, -299, 151.031, -299, 152.297, -321.203, 150.031, 21.9297, 9, 21.0625, 9, -112.906, 10.9063, -335, 150.328, -335)
@@ -41,6 +42,18 @@ position = Vector2(-74, 72)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 77)
 zoom = Vector2(3, 3)
+
+[node name="DashCooldownDisplay" parent="Camera2D" instance=ExtResource("6_8qak7")]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 118.0
+offset_top = 78.0
+offset_right = 118.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.288)
 
 [node name="WaypointsRoom1" type="Node2D" parent="."]
 
