@@ -13,7 +13,6 @@ var busy_with_player := false
 var _animated_sprite : AnimatedSprite2D
 
 @export var speed: float = 120.0
-@export var minigame_scene: PackedScene # assign MinigameQuickTime.tscn in Inspector
 var minigame_scene: PackedScene # Will be loaded automatically
 
 #Pathfinding
