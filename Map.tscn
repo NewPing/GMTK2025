@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://xjohrqm8dvyt"]
+[gd_scene load_steps=11 format=4 uid="uid://xjohrqm8dvyt"]
 
 [ext_resource type="TileSet" uid="uid://dmvthur7s061i" path="res://Map.tres" id="1_3h1ab"]
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
@@ -8,9 +8,24 @@
 [ext_resource type="PackedScene" uid="uid://c18y7yygcygu7" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7if1s"]
-vertices = PackedVector2Array(194.227, -320.219, 194.75, -299, 151.031, -299, 152.297, -321.203, 150.031, 21.9297, 9, 21.0625, 9, -112.906, 10.9063, -335, 150.328, -335)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6, 7, 8), PackedInt32Array(8, 3, 2)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -113, -1, 31, 160, 32, 161, -289, 205, -289, 204, -330, 161, -331, 159, -345, 1, -345)])
+vertices = PackedVector2Array(149, 20.1172, 10.7891, 21.8672, 3.21875, -336, 149, -336)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-7, -346, 1, 32, 159, 30, 159, -346)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v6avs"]
+vertices = PackedVector2Array(366.047, -187.938, 220, -187.063, 220, -337, 366.938, -337)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(210, -347, 210, -177, 376, -178, 377, -347)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8qak7"]
+vertices = PackedVector2Array(509.094, -11.0625, 218.094, -12.9297, 218.898, -95.0313, 509.898, -95.9609)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(209, -105, 208, -3, 519, -1, 520, -106)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0f2yp"]
+vertices = PackedVector2Array(1183, 190.953, 561.891, 188.039, 556.109, -335.008, 1183, -335.977)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(546, -345, 552, 198, 1193, 201, 1193, -346)])
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_7if1s")
@@ -26,12 +41,6 @@ tile_set = ExtResource("1_3h1ab")
 
 [node name="PrinceCharacter" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(-8, 72)
-
-[node name="EnemyRoom1" parent="." instance=ExtResource("4_7if1s")]
-position = Vector2(82, -113)
-minigame_scene = ExtResource("5_v6avs")
-waypoint_parent = NodePath("../WaypointsRoom1")
-nav_region = NodePath("../NavigationRegion2D")
 
 [node name="PrinceCharacter2" parent="." instance=ExtResource("3_3h1ab")]
 position = Vector2(-39, 72)
@@ -57,11 +66,160 @@ scale = Vector2(0.3, 0.288)
 
 [node name="WaypointsRoom1" type="Node2D" parent="."]
 
-[node name="Waypoint1" type="Node2D" parent="WaypointsRoom1"]
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(-8, 77)
+
+[node name="EnemyRoom1" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(90, -190)
+minigame_scene = ExtResource("5_v6avs")
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom1")
+nav_region = NodePath("../../Pathing/NavigationRoom1")
+
+[node name="EnemyRoom2" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(351, -399)
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom2")
+nav_region = NodePath("../../Pathing/NavigationRoom2")
+
+[node name="EnemyRoom3_1" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(492, -163)
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom3/One")
+nav_region = NodePath("../../Pathing/Navigation Room3")
+
+[node name="EnemyRoom3_2" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(245, -107)
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom3/Two")
+nav_region = NodePath("../../Pathing/Navigation Room3")
+
+[node name="EnemyRoom4_1" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(1131, -384)
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom4/One")
+nav_region = NodePath("../../Pathing/NavigationRoom4")
+
+[node name="EnemyRoom4_2" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(652, -371)
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom4/Two")
+nav_region = NodePath("../../Pathing/NavigationRoom4")
+
+[node name="EnemyRoom4_3" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(729, -164)
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom4/Three")
+nav_region = NodePath("../../Pathing/NavigationRoom4")
+
+[node name="EnemyRoom4_4" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(620, 56)
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom4/Four")
+nav_region = NodePath("../../Pathing/NavigationRoom4")
+
+[node name="EnemyRoom4_5" parent="Enemies" instance=ExtResource("4_7if1s")]
+position = Vector2(875, -384)
+waypoint_parent = NodePath("../../Pathing/WaypointsRoom4/Five")
+nav_region = NodePath("../../Pathing/NavigationRoom4")
+
+[node name="Pathing" type="Node2D" parent="."]
+
+[node name="NavigationRoom1" type="NavigationRegion2D" parent="Pathing"]
+navigation_polygon = SubResource("NavigationPolygon_7if1s")
+
+[node name="NavigationRoom2" type="NavigationRegion2D" parent="Pathing"]
+navigation_polygon = SubResource("NavigationPolygon_v6avs")
+
+[node name="Navigation Room3" type="NavigationRegion2D" parent="Pathing"]
+navigation_polygon = SubResource("NavigationPolygon_8qak7")
+
+[node name="NavigationRoom4" type="NavigationRegion2D" parent="Pathing"]
+position = Vector2(0, 2)
+navigation_polygon = SubResource("NavigationPolygon_0f2yp")
+
+[node name="WaypointsRoom1" type="Node2D" parent="Pathing"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom1"]
 position = Vector2(81, -45)
 
-[node name="Waypoint2" type="Node2D" parent="WaypointsRoom1"]
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom1"]
 position = Vector2(83, -295)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_7if1s")
+[node name="WaypointsRoom2" type="Node2D" parent="Pathing"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom2"]
+position = Vector2(346, -323)
+
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom2"]
+position = Vector2(346, -207)
+
+[node name="Waypoint3" type="Node2D" parent="Pathing/WaypointsRoom2"]
+position = Vector2(236, -207)
+
+[node name="Waypoint4" type="Node2D" parent="Pathing/WaypointsRoom2"]
+position = Vector2(237, -320)
+
+[node name="WaypointsRoom3" type="Node2D" parent="Pathing"]
+
+[node name="One" type="Node2D" parent="Pathing/WaypointsRoom3"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom3/One"]
+position = Vector2(238, -86)
+
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom3/One"]
+position = Vector2(486, -85)
+
+[node name="Two" type="Node2D" parent="Pathing/WaypointsRoom3"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom3/Two"]
+position = Vector2(237, -25)
+
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom3/Two"]
+position = Vector2(487, -22)
+
+[node name="WaypointsRoom4" type="Node2D" parent="Pathing"]
+
+[node name="One" type="Node2D" parent="Pathing/WaypointsRoom4"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom4/One"]
+position = Vector2(1126, -302)
+
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom4/One"]
+position = Vector2(591, 166)
+
+[node name="Two" type="Node2D" parent="Pathing/WaypointsRoom4"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom4/Two"]
+position = Vector2(594, -305)
+
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom4/Two"]
+position = Vector2(1144, 160)
+
+[node name="Three" type="Node2D" parent="Pathing/WaypointsRoom4"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom4/Three"]
+position = Vector2(724, -81)
+
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom4/Three"]
+position = Vector2(866, 60)
+
+[node name="Waypoint3" type="Node2D" parent="Pathing/WaypointsRoom4/Three"]
+position = Vector2(1005, -85)
+
+[node name="Waypoint4" type="Node2D" parent="Pathing/WaypointsRoom4/Three"]
+position = Vector2(862, -221)
+
+[node name="Four" type="Node2D" parent="Pathing/WaypointsRoom4"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom4/Four"]
+position = Vector2(592, 161)
+
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom4/Four"]
+position = Vector2(1142, 158)
+
+[node name="Waypoint3" type="Node2D" parent="Pathing/WaypointsRoom4/Four"]
+position = Vector2(1129, -305)
+
+[node name="Waypoint4" type="Node2D" parent="Pathing/WaypointsRoom4/Four"]
+position = Vector2(593, -308)
+
+[node name="Five" type="Node2D" parent="Pathing/WaypointsRoom4"]
+
+[node name="Waypoint1" type="Node2D" parent="Pathing/WaypointsRoom4/Five"]
+position = Vector2(864, -308)
+
+[node name="Waypoint2" type="Node2D" parent="Pathing/WaypointsRoom4/Five"]
+position = Vector2(873, 158)
