@@ -1,0 +1,273 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1os160a7liye"]
+
+[ext_resource type="Script" uid="uid://cle0i58eajt00" path="res://scenes/menu.gd" id="1_t1uqx"]
+[ext_resource type="VideoStream" uid="uid://7yi47t4g2ege" path="res://resources/background-looping-scene.ogv" id="2_v86rl"]
+[ext_resource type="Texture2D" uid="uid://dewj4xbjhbdd4" path="res://resources/scaleHorde.png" id="3_8ux07"]
+[ext_resource type="Theme" uid="uid://bncul0l835l7l" path="res://resources/custom_theme.tres" id="3_f27c7"]
+[ext_resource type="FontFile" uid="uid://ci2qllcy4f3yr" path="res://resources/ARCADECLASSIC.TTF" id="4_xd3qs"]
+[ext_resource type="Texture2D" uid="uid://b4fdwyo76m4bm" path="res://resources/wasd_space_shift2.png" id="6_v86rl"]
+[ext_resource type="AudioStream" uid="uid://bixu43ym67iq7" path="res://resources/sound/music.mp3" id="8_t4sfl"]
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("optionsField")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1uqx")
+optionsField = NodePath("MarginContainer/VBoxContainer/lblOptionsComingSoon")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_v86rl")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Milk" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 0.951)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -330.0
+offset_top = 107.0
+offset_right = 278.0
+offset_bottom = 217.0
+grow_horizontal = 2
+scale = Vector2(1, 1.2856)
+theme_override_colors/font_color = Color(0.857332, 0.612108, 0.0706111, 1)
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 80
+text = "♾️ Escape    Loop"
+
+[node name="ScaleHorde" type="Sprite2D" parent="Title"]
+position = Vector2(692, 63.7836)
+scale = Vector2(0.2, 0.119772)
+texture = ExtResource("3_8ux07")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -9.0
+offset_right = 367.0
+offset_bottom = 391.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.770687, 0.697934)
+theme = ExtResource("3_f27c7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spacer3" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "                                                                                                               "
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_f27c7")
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 28
+text = "Play"
+
+[node name="Spacer" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "                                                                                                               "
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_f27c7")
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 28
+text = "Options"
+
+[node name="lblOptionsComingSoon" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+text = "(COMING  SOON...)"
+
+[node name="Spacer2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+text = "                                                                                                               "
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_f27c7")
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 28
+text = "Quit"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = 112.0
+offset_right = 366.0
+offset_bottom = 167.0
+grow_vertical = 2
+
+[node name="WasdSpaceShift2" type="Sprite2D" parent="MarginContainer2"]
+position = Vector2(168, 26)
+scale = Vector2(0.23, 0.23)
+texture = ExtResource("6_v86rl")
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -3.0
+offset_right = -70.0
+offset_bottom = 38.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Title4" type="Label" parent="MarginContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 40
+text = "W A S D    to     move"
+horizontal_alignment = 1
+
+[node name="MarginContainer5" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -392.0
+offset_top = 13.0
+offset_right = -26.0
+offset_bottom = 184.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Title3" type="Label" parent="MarginContainer5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 40
+text = "SHIFT   to    DASH"
+horizontal_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -391.0
+offset_top = 114.0
+offset_right = -25.0
+offset_bottom = 285.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Title4" type="Label" parent="MarginContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 40
+text = "Space    for  
+quicktime    events"
+horizontal_alignment = 1
+
+[node name="musicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_t4sfl")
+parameters/looping = false
+
+[node name="Title2" type="Label" parent="."]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 13.0
+offset_right = 434.0
+offset_bottom = 206.0
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 45
+text = "GMTK    Game    Jam    2025"
+
+[node name="Title7" type="Label" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 70.0
+offset_right = 437.0
+offset_bottom = 263.0
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 29
+text = "Theme - Loop"
+
+[node name="Title3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 134.0
+offset_right = 436.0
+offset_bottom = 327.0
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 29
+text = "AromaticA
+someone"
+
+[node name="Title3" type="Label" parent="Title3"]
+offset_left = 746.0
+offset_top = 70.0
+offset_right = 1166.0
+offset_bottom = 263.0
+scale = Vector2(1, 1.08)
+theme_override_fonts/font = ExtResource("4_xd3qs")
+theme_override_font_sizes/font_size = 20
+text = "By   the   creators   of"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
