@@ -5,6 +5,8 @@ var current_index: int = 0
 
 @onready var camera: Camera2D = $Camera2D
 @onready var dash_ui: Control = $Camera2D/DashCooldownDisplay
+@onready var DeathScreen: Control = $Camera2D/Deathscreen
+@onready var musicPlayer : AudioStreamPlayer2D = $musicPlayer
 
 func _ready() -> void:
 	var raw_players: Array = get_tree().get_nodes_in_group("player")
@@ -75,7 +77,7 @@ func _on_player_caught(caught_player: Node2D) -> void:
 	
 	var next_index: int = _find_nearest_uncaught_index(caught_player)
 	if next_index == -1:
-		print("No uncaught players left. Game over?")
+		showDeathScreen()
 		return
 	
 	current_index = next_index
@@ -86,6 +88,10 @@ func _on_player_caught(caught_player: Node2D) -> void:
 	_connect_dash_ui_to_player(players[current_index])
 	
 	_attach_camera_to(players[current_index])
+	
+func showDeathScreen() -> void:
+	DeathScreen.visible = true
+	musicPlayer.volume_db -= 10
 
 func _find_nearest_uncaught_index(exclude_player: Node2D) -> int:
 	var best_idx: int = -1
