@@ -11,8 +11,8 @@ var player_in_cone := false
 var player_visible := false
 var busy_with_player := false
 var _animated_sprite : AnimatedSprite2D
+var minigame_scene: PackedScene # Will be loaded automatically
 @export var speed: float = 120.0
-@export var minigame_scene: PackedScene # assign MinigameQuickTime.tscn in Inspector
 #Pathfinding
 @export var waypoint_parent: NodePath
 @export var nav_region: NodePath
@@ -29,6 +29,7 @@ func _ready() -> void:
 	touch_area = $Area2D_Touch
 	ray = $RayCast2D
 	_animated_sprite = $AnimatedSprite2D
+	minigame_scene = preload("res://scenes/minigame_quick_time.tscn")
 	
 	detection_area.body_entered.connect(_on_detection_body_entered)
 	detection_area.body_exited.connect(_on_detection_body_exited)

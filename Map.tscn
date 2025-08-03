@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://xjohrqm8dvyt"]
+[gd_scene load_steps=10 format=4 uid="uid://xjohrqm8dvyt"]
 
 [ext_resource type="TileSet" uid="uid://dmvthur7s061i" path="res://Map.tres" id="1_3h1ab"]
 [ext_resource type="Script" uid="uid://cnjg0dxg886o4" path="res://map.gd" id="1_7if1s"]
 [ext_resource type="PackedScene" uid="uid://cdg54qeul1i0c" path="res://scenes/prince_character.tscn" id="3_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://b0ewd423vy7hu" path="res://scenes/enemy.tscn" id="4_7if1s"]
-[ext_resource type="PackedScene" uid="uid://beyiqyyd1y4aw" path="res://scenes/minigame_quick_time.tscn" id="5_v6avs"]
 [ext_resource type="PackedScene" uid="uid://c18y7yygcygu7" path="res://scenes/DashCooldownDisplay.tscn" id="6_8qak7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7if1s"]
@@ -56,9 +55,9 @@ zoom = Vector2(3, 3)
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 118.0
+offset_left = 116.0
 offset_top = 78.0
-offset_right = 118.0
+offset_right = 116.0
 offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -71,7 +70,6 @@ position = Vector2(-8, 77)
 
 [node name="EnemyRoom1" parent="Enemies" instance=ExtResource("4_7if1s")]
 position = Vector2(90, -190)
-minigame_scene = ExtResource("5_v6avs")
 waypoint_parent = NodePath("../../Pathing/WaypointsRoom1")
 nav_region = NodePath("../../Pathing/NavigationRoom1")
 
