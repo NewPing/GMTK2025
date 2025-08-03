@@ -66,6 +66,7 @@ func _on_player_touched(player: Node2D) -> void:
 	_start_minigame(player)
 
 func _start_minigame(the_player: Node2D) -> void:
+	busy_with_player = true                  # enemy is now occupied
 	if minigame_scene == null:
 		return
 	var ui := minigame_scene.instantiate()
@@ -88,6 +89,7 @@ func _on_minigame_fail(player: Node2D, enemy: Node2D) -> void:
 	if enemy != self: return
 	# Player loses: mark caught; enemy remains active (no busy_with_player)
 	if is_instance_valid(player):
+		busy_with_player = false 
 		if player.has_method("mark_caught"):
 			player.call("mark_caught")
 		emit_signal("player_touched", player)
@@ -107,7 +109,7 @@ func _physics_process(delta: float) -> void:
 
 	if player_in_cone and is_instance_valid(player):
 		var to_player := player.global_position - global_position
-		detection_area.rotation = (player.global_position - detection_area.global_position).angle() - PI/2
+		#detection_area.rotation = (player.global_position - detection_area.global_position).angle() - PI/2
 		ray.global_position = global_position
 		ray.target_position = to_player
 		ray.force_raycast_update()
@@ -135,7 +137,10 @@ func _physics_process(delta: float) -> void:
 					_on_reached_waypoint()
 			else:
 				velocity = to_target.normalized() * speed
-		
+	if(velocity != Vector2.ZERO):
+		detection_area.rotation = velocity.angle() - PI /2
+	else:
+		detection_area.rotation = 0
 	play_animation_based_on_direction(velocity)
 	#_request_path_to_next_waypoint()
 	move_and_slide()
